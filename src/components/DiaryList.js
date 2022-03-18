@@ -5,6 +5,12 @@ const sortOptionList = [
   { value: 'oldest', name: '오래된순' },
 ];
 
+const filterOptionList = [
+  { value: 'all', name: '모든 감정' },
+  { value: 'good', name: '좋은 감정' },
+  { value: 'bad', name: '안좋은 감정' },
+];
+
 const ControlMenu = ({ value, onChange, optionList }) => {
   return (
     <select value={value} onChange={(e) => onChange(e.target.value)}>
@@ -20,9 +26,18 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 const DiaryList = ({ diaryList }) => {
   // 정렬기능
   const [sortType, setSortType] = useState('latest');
+  const [filter, setFilter] = useState('all');
 
   const getProcessdDiaryList = () => {
-    // sort를 위한 비교 함수 만들기
+    const filterCallback = (item) => {
+      if (filter === 'good') {
+        return parseInt(item.emotion) <= 3;
+      } else {
+        return parseInt(item.emotion) > 3;
+      }
+    };
+
+    // sort를 위한 비교 함수
     const compare = (a, b) => {
       if (sortType === 'latest') {
         // 문자열이 들어올 수 있기에 형 변환
@@ -34,7 +49,10 @@ const DiaryList = ({ diaryList }) => {
 
     // diaryList deep copy
     const copyList = JSON.parse(JSON.stringify(diaryList));
-    const sortedList = copyList.sort(compare);
+    const filteredList =
+      filter === 'all' ? copyList : copyList.filter((it) => filterCallback(it));
+
+    const sortedList = filteredList.sort(compare);
 
     return sortedList;
   };
@@ -46,8 +64,16 @@ const DiaryList = ({ diaryList }) => {
         onChange={setSortType}
         optionList={sortOptionList}
       />
+
+      <ControlMenu
+        value={filter}
+        onChange={setFilter}
+        optionList={filterOptionList}
+      />
       {getProcessdDiaryList().map((it) => (
-        <div key={it.id}>{it.content}</div>
+        <div key={it.id}>
+          {it.content} {it.emotion}
+        </div>
       ))}
     </div>
   );
