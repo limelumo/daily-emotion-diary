@@ -1,12 +1,41 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DiaryStateContext } from '../App';
 
 import DiaryHeader from './../components/DiaryHeader';
 import DiaryButton from './../components/DiaryButton';
+import DiaryList from './../components/DiaryList';
 
 const Home = () => {
-  const [curDate, setCurDate] = useState(new Date());
+  const diaryList = useContext(DiaryStateContext);
 
+  const [data, setData] = useState([]);
+  const [curDate, setCurDate] = useState(new Date());
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+
+  useEffect(() => {
+    if (diaryList.length >= 1) {
+      const firstDay = new Date(
+        curDate.getFullYear(),
+        curDate.getMonth(),
+        1
+      ).getTime();
+
+      const lastDay = new Date(
+        curDate.getFullYear(),
+        curDate.getMonth() + 1,
+        0
+      ).getTime();
+
+      setData(
+        diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay)
+      );
+    }
+  }, [diaryList, curDate]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   const increaseMonth = () => {
     setCurDate(
       new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate())
@@ -25,6 +54,7 @@ const Home = () => {
         leftChild={<DiaryButton text={'<'} onClick={decreaseMonth} />}
         rightChild={<DiaryButton text={'>'} onClick={increaseMonth} />}
       />
+      <DiaryList diaryList={data} />
     </div>
   );
 };
