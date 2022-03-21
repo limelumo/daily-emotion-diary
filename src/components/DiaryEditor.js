@@ -6,38 +6,8 @@ import DiaryHeader from './DiaryHeader';
 import DiaryButton from './DiaryButton';
 import EmotionItem from './EmotionItem';
 
-const emotionList = [
-  {
-    emotion_id: 1,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion1.png`,
-    emotion_descript: '완전 좋음',
-  },
-  {
-    emotion_id: 2,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion2.png`,
-    emotion_descript: '좋음',
-  },
-  {
-    emotion_id: 3,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion3.png`,
-    emotion_descript: '그럭저럭',
-  },
-  {
-    emotion_id: 4,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion4.png`,
-    emotion_descript: '나쁨',
-  },
-  {
-    emotion_id: 5,
-    emotion_img: process.env.PUBLIC_URL + `/assets/emotion5.png`,
-    emotion_descript: '최악',
-  },
-];
-
-// 현재 날짜를 기본값으로 input(date)에 전달
-const getStringDate = (date) => {
-  return date.toISOString().slice(0, 10);
-};
+import { getStringDate } from '../util/date.js';
+import { emotionList } from '../util/emotion.js';
 
 const DiaryEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
