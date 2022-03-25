@@ -43,9 +43,9 @@ const Diary = () => {
     return (
       <div className="DiaryPage">
         <DiaryHeader
-          headText={`${getStringDate(new Date(data.date))} 기록`}
+          headText={`${getStringDate(new Date(data.date))}의 기록`}
           leftChild={
-            <DiaryButton text={'< 뒤로가기'} onClick={() => navigate(-1)} />
+            <DiaryButton text={'뒤로가기'} onClick={() => navigate(-1)} />
           }
           rightChild={
             <DiaryButton
@@ -56,6 +56,13 @@ const Diary = () => {
         />
 
         <article>
+          <section>
+            <h4>오늘을 한 문장으로 나타낸다면?</h4>
+            <div className="diary_oneLine_wrapper">
+              <p>{data.oneLine}</p>
+            </div>
+          </section>
+
           <section>
             <h4>오늘의 감정</h4>
             <div
