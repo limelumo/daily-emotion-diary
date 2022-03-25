@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif; */
 
 body {
   background-color: #f6f6f6;
@@ -60,7 +62,7 @@ body {
 
 /* HEADER */
 header {
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
@@ -72,7 +74,8 @@ header > div {
 
 header .head_text {
   width: 50%;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   justify-content: center;
 }
 
@@ -114,7 +117,13 @@ header button {
   padding: 8px 16px;
   cursor: pointer;
   font-family: 'Noto Serif KR';
-  font-size: 14px;
+  font-size: 13.5px;
+}
+
+.DiaryList .nolist {
+  font-size: 16px;
+  padding-top: 80px;
+  text-align: center;
 }
 
 /* DiaryItem */
@@ -177,6 +186,9 @@ header button {
 .DiaryItem .btn_wrapper {
   min-width: 70px;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* DiaryEditor */
@@ -198,6 +210,17 @@ header button {
   background-color: #ececec;
   padding: 8px 16px;
   cursor: pointer;
+  font-family: 'Noto Serif KR';
+  font-style: 20px;
+}
+
+.DiaryEditor .input_oneline {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 8px 16px;
   font-family: 'Noto Serif KR';
   font-style: 20px;
 }
@@ -277,26 +300,26 @@ header button {
 }
 
 /* Diary */
-.DiaryPage {
-}
-
 .DiaryPage section {
-  width: 100%;
-  margin-bottom: 100px;
+  padding: 20px 0 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  border-bottom: 1px dashed #e2e2e2;
+}
+
+.DiaryPage section:last-child {
+  border: none;
 }
 
 .DiaryPage h4 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .DiaryPage .diary_img_wrapper {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -341,4 +364,9 @@ header button {
   text-align: left;
   font-size: 16px;
   line-height: 2;
+}
+
+.DiaryPage .diary_oneLine_wrapper p {
+  margin: 0;
+  margin-top: 10px;
 }

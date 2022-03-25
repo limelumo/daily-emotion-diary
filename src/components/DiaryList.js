@@ -36,6 +36,11 @@ const DiaryList = ({ diaryList }) => {
   // 정렬기능
   const [sortType, setSortType] = useState('latest');
   const [filter, setFilter] = useState('all');
+  const [numOfList, setNumberOfList] = useState(0);
+
+  useEffect(() => {
+    setNumberOfList(diaryList.length);
+  });
 
   const getProcessdDiaryList = () => {
     const filterCallback = (item) => {
@@ -91,9 +96,13 @@ const DiaryList = ({ diaryList }) => {
         </div>
       </div>
 
-      {getProcessdDiaryList().map((it) => (
-        <DiaryItem key={it.id} {...it} />
-      ))}
+      <section>
+        {numOfList > 0 ? (
+          getProcessdDiaryList().map((it) => <DiaryItem key={it.id} {...it} />)
+        ) : (
+          <p className="nolist">첫 일기를 작성해보세요</p>
+        )}
+      </section>
     </div>
   );
 };
