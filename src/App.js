@@ -59,13 +59,15 @@ function App() {
   }, []);
 
   const dataId = useRef(0);
+
   // CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date, oneLine, content, emotion) => {
     dispatch({
       type: 'CREATE',
       data: {
         id: dataId.current,
         date: new Date(date).getTime(),
+        oneLine,
         content,
         emotion,
       },
@@ -79,13 +81,14 @@ function App() {
   };
 
   // EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId, date, oneLine, content, emotion) => {
     dispatch({
       type: 'EDIT',
       data: {
         // id는 유지
         id: targetId,
         date: new Date(date).getTime(),
+        oneLine,
         content,
         emotion,
       },

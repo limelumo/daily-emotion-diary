@@ -6,6 +6,7 @@ const New = () => {
     const titleElement = document.getElementsByTagName('title')[0];
     titleElement.innerHTML = 'Emotion Diary, new diary';
   }, []);
+
   return (
     <div>
       <DiaryEditor />
