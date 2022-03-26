@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import DiaryButton from './DiaryButton';
 
 const DiaryItem = ({ id, emotion, content, date }) => {
@@ -29,7 +30,9 @@ const DiaryItem = ({ id, emotion, content, date }) => {
 
       <div onClick={goDetail} className="info_wrapper">
         <div className="diary_date">{strDate}</div>
-        <div className="diary_content_preview">{content.slice(0, 30)}</div>
+        <div className="diary_content_preview">
+          {content.length > 20 ? `${content.slice(0, 20)}...` : content}
+        </div>
       </div>
 
       <div className="btn_wrapper">
